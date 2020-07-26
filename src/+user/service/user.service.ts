@@ -6,7 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 // Local files
-import { UserEntity } from '../../models/user.entity';
+import { UserEntity } from '../../core/entities/user.entity';
 
 @Injectable()
 export class UserService {
