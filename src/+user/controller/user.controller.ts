@@ -9,7 +9,7 @@ export class UserController {
     constructor(private userService: UserService) { }
 
     @Get()
-    public async getAll() {
-        return await this.userService.getAll();
+    public async findAll() {
+        return await this.userService.findAll();
     }
 }

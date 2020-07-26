@@ -30,6 +30,14 @@ class ConfigService {
         return mode != 'DEV';
     }
 
+    public getAccessTokenSecret() {
+        return this.getValue('SECRET_FOR_ACCESS_TOKEN', true);
+    }
+
+    public getJwtExpirationTime() {
+        return this.getValue('JWT_EXPIRATION_TIME', true);
+    }
+
     public getTypeOrmConfig(): TypeOrmModuleOptions {
         return {
             type: 'postgres',
