@@ -38,6 +38,22 @@ class ConfigService {
         return this.getValue('JWT_EXPIRATION_TIME', true);
     }
 
+    public getMapquestKey() {
+        return this.getValue('MAPQUEST_KEY', true);
+    }
+
+    public getMapquestUrl() {
+        return this.getValue('MAPQUEST_URL', true);
+    }
+
+    public getOpenWeatherMapKey() {
+        return this.getValue('OPENWEATHERMAP_KEY', true);
+    }
+
+    public getOpenWeatherMapUrl() {
+        return this.getValue('OPENWEATHERMAP_URL', true);
+    }
+
     public getTypeOrmConfig(): TypeOrmModuleOptions {
         return {
             type: 'postgres',

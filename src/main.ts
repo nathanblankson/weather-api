@@ -26,9 +26,9 @@ async function bootstrap() {
         origin: [
             'http://localhost:4200' // angular
         ]
-    })
+    });
 
-    Logger.log(`Running on localhost:${PORT}`, 'Bootstrap')
+    Logger.log(`Running on localhost:${PORT}`, 'Bootstrap');
     await app.listen(PORT);
 }
 bootstrap();
