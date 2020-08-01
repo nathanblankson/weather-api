@@ -22,7 +22,7 @@ export class UserController {
 
     @Get(':id')
     public async findOne(@Param('id') id) {
-        return await this.userService.findOne(id);
+        return await this.userService.findOneById(id);
     }
 
     @Patch(':id')

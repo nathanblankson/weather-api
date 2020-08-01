@@ -1,5 +1,6 @@
 // Other dependencies
 import { PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { classToPlain } from "class-transformer";
 
 export abstract class AbstractEntity {
     @PrimaryGeneratedColumn()
@@ -10,4 +11,8 @@ export abstract class AbstractEntity {
 
     @UpdateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
     updated: Date;
+
+    toJSON() {
+        return classToPlain(this);
+    }
 }

@@ -30,8 +30,16 @@ export class UserService {
      * Find user by id
      * @param id id to search for
      */
-    async findOne(id: string | number): Promise<UserEntity | undefined> {
-        return this.userRepository.findOneById(id);
+    async findOneById(id: string | number): Promise<UserEntity | undefined> {
+        return this.userRepository.getUserById(id);
+    }
+
+    /**
+     * Find user by email
+     * @param email email to search for
+     */
+    async findOneByEmail(email: string): Promise<UserEntity | undefined> {
+        return this.userRepository.getUserByEmail(email);
     }
 
     /**

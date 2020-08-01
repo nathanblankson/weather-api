@@ -23,6 +23,11 @@ export class UserEntity extends AbstractEntity {
     @Column({ name: 'last_name' })
     lastName: string;
 
+    constructor(partial: Partial<UserEntity>) {
+        super();
+        Object.assign(this, partial);
+    }
+
     @BeforeInsert()
     async hashPassword() {
         this.password = await bcrypt.hash(this.password, 10);

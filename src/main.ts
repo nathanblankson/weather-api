@@ -1,5 +1,6 @@
 // Nest dependencies
 import { NestFactory } from '@nestjs/core';
+import { Logger } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 // Local files
@@ -27,6 +28,7 @@ async function bootstrap() {
         ]
     })
 
+    Logger.log(`Running on localhost:${PORT}`, 'Bootstrap')
     await app.listen(PORT);
 }
 bootstrap();

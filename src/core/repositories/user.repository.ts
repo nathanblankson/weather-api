@@ -18,17 +18,12 @@ export class UserRepository extends Repository<UserEntity> {
      * @param userData user attributes in request body
      */
     async createUser(userData: CreateUserDto): Promise<UserEntity> {
-        if (await this.findOneByEmail(userData.email)) {
+        if (await this.findOne({ where: { email: userData.email } })) {
             throw new BadRequestException('This email already exists.', 'email_already_exists');
         }
 
-        const user = new UserEntity();
-        user.email = userData.email;
-        user.password = userData.password;
-        user.firstName = userData.firstName;
-        user.lastName = userData.lastName;
-
         try {
+            const user = this.create(userData);
             return await this.save(user);
         } catch (err) {
             throw new BadRequestException(err);
@@ -36,26 +31,26 @@ export class UserRepository extends Repository<UserEntity> {
     }
 
     /**
-     * Find user by id
+     * Get user by id
      * @param id id to search for
      */
-    async findOneById(id: string | number): Promise<UserEntity> {
+    async getUserById(id: string | number): Promise<UserEntity> {
         try {
             return await this.findOneOrFail(id);
         } catch (err) {
-            throw new BadRequestException('User could not found by given id.');
+            throw new BadRequestException('User could not found by given id.', 'user_not_found');
         }
     }
 
     /**
-     * Find user by email
+     * Get user by email
      * @param email email to search for
      */
-    async findOneByEmail(email: string): Promise<UserEntity> {
+    async getUserByEmail(email: string): Promise<UserEntity> {
         try {
             return await this.findOneOrFail({ email });
         } catch (err) {
-            throw new BadRequestException('User could not found by given email.');
+            throw new BadRequestException('User could not found by given email.', 'user_not_found');
         }
     }
 
@@ -68,13 +63,13 @@ export class UserRepository extends Repository<UserEntity> {
         let userToUpdate: UserEntity;
 
         try {
-            userToUpdate = await this.findOneById(id);
+            userToUpdate = await this.getUserById(id);
         } catch (err) {
-            throw new BadRequestException('User could not found by given id.');
+            throw new BadRequestException('User could not found by given id.', 'user_not_found');
         }
 
         // check if email already exists in db
-        if (userData.email && await this.findOneByEmail(userData.email)) {
+        if (userData.email && await this.findOne({ where: { email: userData.email } })) {
             throw new BadRequestException('This email already exists.', 'email_already_exists');
         }
 
@@ -102,7 +97,7 @@ export class UserRepository extends Repository<UserEntity> {
      */
     async deleteUser(id: string | number): Promise<any> {
         try {
-            const user = await this.findOneById(id);
+            const user = await this.getUserById(id);
             return await this.delete(user.id);
         } catch (err) {
             throw new BadRequestException('User could not found by given id.');
