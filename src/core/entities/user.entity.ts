@@ -6,6 +6,7 @@ import { IsEmail } from 'class-validator';
 
 // Local files
 import { AbstractEntity } from "./abstract.entity";
+import { UserPreferenceEntity } from "./user-preference.entity";
 
 @Entity({ name: 'users' })
 export class UserEntity extends AbstractEntity {
@@ -22,6 +23,9 @@ export class UserEntity extends AbstractEntity {
 
     @Column({ name: 'last_name' })
     lastName: string;
+
+    @OneToMany(type => UserPreferenceEntity, userPreference => userPreference.user)
+    userPreference: UserPreferenceEntity;
 
     constructor(partial: Partial<UserEntity>) {
         super();
