@@ -23,9 +23,9 @@ import { UserRepository } from '../core/repositories/user.repository';
         JwtModule.registerAsync({
             useFactory: () => {
                 return {
-                    secret: configService.getAccessTokenSecret(),
+                    secret: configService.getJwtSecret(),
                     signOptions: {
-                        ...({ expiresIn: configService.getJwtExpirationTime() }),
+                        ...({ expiresIn: configService.getJwtExpiresIn() }),
                     },
                 }
             },

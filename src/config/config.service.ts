@@ -30,12 +30,12 @@ class ConfigService {
         return mode != 'DEV';
     }
 
-    public getAccessTokenSecret() {
-        return this.getValue('SECRET_FOR_ACCESS_TOKEN', true);
+    public getJwtSecret() {
+        return this.getValue('JWT_SECRET', true);
     }
 
-    public getJwtExpirationTime() {
-        return this.getValue('JWT_EXPIRATION_TIME', true);
+    public getJwtExpiresIn() {
+        return this.getValue('JWT_EXPIRES_IN', true);
     }
 
     public getMapquestKey() {
