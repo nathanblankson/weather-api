@@ -1,8 +1,8 @@
 // Other dependencies
-import { PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, BaseEntity } from "typeorm";
 import { classToPlain } from "class-transformer";
 
-export abstract class AbstractEntity {
+export abstract class AbstractEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 

@@ -1,5 +1,5 @@
 // Other dependencies
-import { Entity, ManyToOne, JoinColumn, Column } from "typeorm";
+import { Entity, ManyToOne, JoinColumn } from "typeorm";
 
 // Local files
 import { AbstractEntity } from "./abstract.entity";
